@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import TaskList from './components/TaskList';
+import AddTask from './components/AddTask';
+import TaskStats from './components/TaskStats';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="app">
+            <nav className="nav">
+                <Link to="/">Liste des tâches</Link>
+                <Link to="/stats">Statistiques</Link>
+            </nav>
+
+            <Routes>
+                <Route path="/" element={
+                    <>
+                        <AddTask />
+                        <TaskList />
+                    </>
+                } />
+                <Route path="/stats" element={<TaskStats />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
